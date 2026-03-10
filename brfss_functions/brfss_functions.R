@@ -55,6 +55,16 @@ brfss_one_var <- function(dat, group_var) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 # BRFSS Two Variables
 
 # dat -> dataset ; in this case it would be your design object
