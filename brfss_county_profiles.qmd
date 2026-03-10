@@ -1,5 +1,5 @@
 ---
-  title: "`{r} params$county` 2024 BRFSS District Profile – Adult Health"
+title: "`{r} params$county` 2024 BRFSS District Profile – Adult Health"
 subtitle: "February 2026"
 format: 
   docx:
