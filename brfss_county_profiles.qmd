@@ -1,5 +1,5 @@
 ---
-  title: "`{r} params$do` 2024 BRFSS District Profile – Adult Health"
+  title: "`{r} params$county` 2024 BRFSS District Profile – Adult Health"
 subtitle: "February 2026"
 format: 
   docx:
@@ -8,7 +8,7 @@ execute:
   echo: false
 warning: false
 params:
-  do: ""
+  county: ""
 ---
   
 For more information on the indicators below refer to the 2024 BRFSS Annual Report and see the Methodology at the end of this document for Definitions and Data Notes.
@@ -31,15 +31,15 @@ county_result_raw <- read.csv("county_profile_df.csv", header = TRUE)
 # Create new column with state values
 state_result <-
   county_result_raw %>%
-  filter(do == "State") %>%
-  pivot_wider(values_from = Percent, names_from = do) %>%
+  filter(county == "State") %>%
+  pivot_wider(values_from = Percent, names_from = county) %>%
   select(Variable, 
          State)
 
 county_result <-
   county_result_raw %>%
-  filter(do == params$do) %>%
-  select(do,
+  filter(county == params$county) %>%
+  select(county,
          Variable, 
          Percent, 
          Pop_Estimate,
@@ -65,7 +65,7 @@ county_result_tidy <-
 # Create risk factor subset
 risk_fact_result <-
   county_result_tidy %>%
-  filter(group == "risk_fact" & do == params$do) %>%
+  filter(group == "risk_fact" & county == params$county) %>%
   select("Indicator",
          "District Most Recent %",
          "Vermont Most Recent %",
@@ -143,7 +143,7 @@ risk_fact_table
 # Preventative behavior subset ----
 prevent_behav_result <-
   county_result_tidy %>%
-  filter(group == "prevent_behav" & do == params$do) %>%
+  filter(group == "prevent_behav" & county == params$county) %>%
   select("Indicator",
          "District Most Recent %",
          "Vermont Most Recent %",
@@ -222,7 +222,7 @@ prevent_behav_table
 # SDoH subset ----
 sdoh_result <-
   county_result_tidy %>%
-  filter(group == "sdoh" & do == params$do) %>%
+  filter(group == "sdoh" & county == params$county) %>%
   select("Indicator",
          "District Most Recent %",
          "Vermont Most Recent %",
@@ -300,7 +300,7 @@ sdoh_table
 # Chronic conditions subset ----
 chronic_cond_result <-
   county_result_tidy %>%
-  filter(group == "chronic_cond" & do == params$do) %>%
+  filter(group == "chronic_cond" & county == params$county) %>%
   select("Indicator",
          "District Most Recent %",
          "Vermont Most Recent %",
@@ -377,7 +377,7 @@ chronic_cond_table
 # Demographics subset ----
 demo_result <-
   county_result_tidy %>%
-  filter(group == "demo" & do == params$do) %>%
+  filter(group == "demo" & county == params$county) %>%
   select("Indicator",
          "District Most Recent %",
          "Vermont Most Recent %",
